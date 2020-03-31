@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: SampleJingdong
+
+mvf4ms:
+  version: 2.4.1
+  dependencies:
+    - name: dependency1
+      dependence:
+        - id: pay
+          serviceName: SimpleWeChat
+          patternUrl: /pay
+          versions:
+            - 1.5.1
+
+server:
+  port: 8080
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://{REGISTRY_IP}:{REGISTRY_PORT}/eureka
