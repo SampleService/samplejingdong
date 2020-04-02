@@ -24,25 +24,25 @@ public class MainController {
 
     @PostMapping(path = "/buy")
     @ResponseBody
-    @MFuncDescription(value = "buy", level = 1)
+    @MFuncDescription(value = "buy", level = 2)
     public MResponse buy(@RequestBody MResponse params, HttpServletRequest request) {
-        boolean r = MBaseUtils.verDepRequest("pay", 6, request, logger);
+        boolean r = MBaseUtils.verDepRequest("pay", 18, request, logger);
 
         if (!r) {
             return MResponse.failResponse();
         }
-        return MBaseUtils.generateResInKBSize(4);
+        return MBaseUtils.generateResInKBSize(11);
     }
 
     @PostMapping(path = "/PDelivery")
     @ResponseBody
-    @MFuncDescription(value = "PDelivery", level = 2)
+    @MFuncDescription(value = "PDelivery", level = 4)
     public MResponse pdelivery(@RequestBody MResponse params, HttpServletRequest request) {
-        boolean r = MBaseUtils.verDepRequest("pay", 6, request, logger);
+        boolean r = MBaseUtils.verDepRequest("pay", 18, request, logger);
 
         if (!r) {
             return MResponse.failResponse();
         }
-        return MBaseUtils.generateResInKBSize(13);
+        return MBaseUtils.generateResInKBSize(15);
     }
 }
