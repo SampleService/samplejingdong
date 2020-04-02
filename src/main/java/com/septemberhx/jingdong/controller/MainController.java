@@ -1,7 +1,10 @@
 package com.septemberhx.jingdong.controller;
 
 import com.septemberhx.common.bean.MResponse;
+import com.septemberhx.jingdong.utils.MBaseUtils;
 import com.septemberhx.mclient.annotation.MFuncDescription;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,17 +20,29 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class MainController {
 
+    private Logger logger = LogManager.getLogger(this);
+
     @PostMapping(path = "/buy")
     @ResponseBody
     @MFuncDescription(value = "buy", level = 1)
     public MResponse buy(@RequestBody MResponse params, HttpServletRequest request) {
-        return MResponse.successResponse();
+        boolean r = MBaseUtils.verDepRequest("pay", 6, request, logger);
+
+        if (!r) {
+            return MResponse.failResponse();
+        }
+        return MBaseUtils.generateResInKBSize(4);
     }
 
     @PostMapping(path = "/PDelivery")
     @ResponseBody
     @MFuncDescription(value = "PDelivery", level = 2)
     public MResponse pdelivery(@RequestBody MResponse params, HttpServletRequest request) {
-        return MResponse.successResponse();
+        boolean r = MBaseUtils.verDepRequest("pay", 6, request, logger);
+
+        if (!r) {
+            return MResponse.failResponse();
+        }
+        return MBaseUtils.generateResInKBSize(13);
     }
 }
